@@ -36,3 +36,5 @@ model Workout {
   updated_at DateTime @updatedAt
   @@map("workouts")
 }
+
+//branch main
