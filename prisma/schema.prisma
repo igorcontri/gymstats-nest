@@ -26,3 +26,13 @@ model User {
   updated_at DateTime @updatedAt
   @@map("users")
 }
+
+model Workout {
+  id Int @id @default(autoincrement())
+  name String
+  Description String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  @@map("workouts")
+}
