@@ -14,27 +14,65 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   name String
   email String @unique
   password String
   age Int
   weight Float
   Height Float
-
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  @@map("users")
+
+  workout_routines WorkoutRoutine[]
+  @@map("users") 
 }
 
-model Workout {
-  id Int @id @default(autoincrement())
+model WorkoutRoutine {
+  id String @id @default(uuid())
   name String
-  Description String?
-
+  description String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  workouts Workout[]
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
+  @@map("workout_routines")
+}
+
+model Workout{
+  id String @id @default(uuid())
+  name String
+  description String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  exercises Exercise[]
+  weekdays Weekday[]
+
+  workout_routine WorkoutRoutine @relation(fields: [workout_routine_id], references: [id])
+  workout_routine_id String
   @@map("workouts")
 }
 
-//branch main
+model Exercise {
+  id String @id @default(uuid())
+  name String
+  description String?
+
+  workout Workout @relation(fields: [workout_id], references: [id])
+  workout_id String
+  @@map("exercises")
+}
+
+model Weekday {
+  id String @id @default(uuid())
+  name String
+  
+  workout Workout @relation(fields: [workout_id], references: [id])
+  workout_id String
+  @@map("weekdays")
+}
+
