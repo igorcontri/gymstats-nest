@@ -18,9 +18,9 @@ model User {
   name String
   email String @unique
   password String
-  age Int
-  weight Float
-  Height Float
+  age Int?
+  weight Float?
+  Height Float?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
