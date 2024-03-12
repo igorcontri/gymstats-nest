@@ -1,8 +1,7 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
+import { userDTO } from './user.dto';
 
 @Injectable()
 export class UserService {
-    async create(data:  ) {
-
-    }
+  async create(data: userDTO) {}
 }
